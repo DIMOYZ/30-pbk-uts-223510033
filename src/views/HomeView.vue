@@ -1,5 +1,5 @@
 <template>
-  <h1>Selamat Datang Di LIST SULTAN FADHIL</h1>
+  <h1>Selamat Datang Di LIST SULTAN asdasd asFADHIL</h1>
   <P>Masukkan kegiatan pertama anda</P>
   <div>
     <input v-model="newTodo" placeholder="Masukkan Kegiatan">
