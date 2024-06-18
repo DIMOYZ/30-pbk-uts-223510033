@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Postingan</h2>
-    <select :value="selectedUser" @change="updateSelectedUser">
+    <select v-model="selectedUser" @change="fetchPosts">
       <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
     </select>
     <div v-if="selectedUser">
@@ -19,16 +19,41 @@
 <script>
 export default {
   name: 'Posts',
-  props: {
-    users: Array,
-    posts: Array,
-    selectedUser: Number,
-    filteredPosts: Array
+  data() {
+    return {
+      users: [],
+      posts: [],
+      selectedUser: null
+    };
+  },
+  computed: {
+    filteredPosts() {
+      if (!this.selectedUser) return [];
+      return this.posts.filter(post => post.userId === this.selectedUser);
+    }
   },
   methods: {
+    fetchUsers() {
+      fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(data => {
+          this.users = data;
+        });
+    },
+    fetchPosts() {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(data => {
+          this.posts = data;
+        });
+    },
     updateSelectedUser(event) {
-      this.$emit('update:selectedUser', parseInt(event.target.value));
+      this.selectedUser = parseInt(event.target.value);
     }
+  },
+  mounted() {
+    this.fetchUsers();
+    this.fetchPosts();
   }
 };
 </script>

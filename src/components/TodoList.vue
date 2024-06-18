@@ -55,14 +55,35 @@
   </script>
   
   <style scoped>
-  .todo-list {
-    background-color: #f7f7f7;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    max-width: 400px;
-    margin: auto;
-  }
+ .todo-list {
+  background-color: #f7f7f7;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  margin: auto;
+  transition: box-shadow 0.3s;
+}
+
+.todo-list:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ... */
+.tambahkan {
+  background-color: #5cb85c;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.tambahkan:hover {
+  background-color: #4cae4c;
+  transform: translateY(-2px);
+}
   
   .geser {
     margin-bottom: 20px;
